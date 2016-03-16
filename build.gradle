@@ -2,7 +2,7 @@ apply plugin: "war"
 apply plugin: "appengine"
 
 def appengineVersion = "1.9.27"
-def numOfTestRetries = 5
+def numOfTestRetries = 1
 def isTravis = System.getenv("TRAVIS") != null
 
 buildscript {
@@ -136,6 +136,7 @@ test {
     reports.junitXml.enabled = false
     testLogging {
         events "passed"
+        exceptionFormat = "full" // to remove
     }
     afterTest afterTestClosure 
     finalizedBy = ["killFirefox1"]

@@ -8,7 +8,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import teammates.common.util.Const;
-import teammates.common.util.ThreadHelper;
 
 public class InstructorStudentListPage extends AppPage {
 
@@ -115,8 +114,8 @@ public class InstructorStudentListPage extends AppPage {
                                          .findElement(By.cssSelector(".profile-pic-icon-click > img"));
         Actions action = new Actions(browser.driver);
         action.click(photo).build().perform();
-        ThreadHelper.waitFor(5000);
-        // browser.driver.findElements(By.cssSelector(".popover-content > .profile-pic"))
+        
+        assertEquals(null, browser.driver.findElement(By.tagName("body")).getAttribute("innerHTML"));
         assertEquals(profilePhotoSrc, browser.driver.findElement(By.cssSelector(".popover-content > .profile-pic"))
                                                     .getAttribute("src"));
     }
